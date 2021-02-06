@@ -40,9 +40,17 @@ const Transaction = {
     },
     
     remove(index){
-        Transaction.all.splice(index, 1),
+        if (window.confirm ("Remover?"))
+        // vai perguntar pro usuario se deseja remover
+        // ou nao aquela transacao
+        
+        {
 
-        App.reload() // vai atualizar a aplicacao (onde aparecer)
+            Transaction.all.splice(index, 1),
+
+            App.reload() // vai atualizar a aplicacao (onde aparecer)
+        }
+        
 
     },
 
