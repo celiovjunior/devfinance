@@ -40,7 +40,7 @@ const Transaction = {
     },
     
     remove(index){
-        if (window.confirm ("Remover?"))
+        if (window.confirm ("Are you sure you want to delete that information?"))
         // vai perguntar pro usuario se deseja remover
         // ou nao aquela transacao
         
@@ -164,10 +164,10 @@ const Utils = {
     formatCurrancy(value) {
         const signal = Number(value) < 0 ? "-":" "
         value = String(value).replace(/\D/g, "") // vai substituir caracteres
-        value = Number(value)/100 // vai adicionar casa decimal
-        value = value.toLocaleString("pr-BR", {
+        value = Number(value) / 100 // vai adicionar casa decimal
+        value = value.toLocaleString("eng", {
             style: "currency", // tipo de Moeda
-            currency: "BRL" // real brasileiro
+            currency: "USD" // moeda
         })
 
         return signal + value // retornar caractere completo
@@ -197,7 +197,7 @@ const Form = { // dar funcionalidade para o
         if( description.trim() === "" ||
             amount.trim() === "" ||
             date.trim() === "") {
-                throw new Error("Por favor, preencha todos os campos.")
+                throw new Error("Please, fill all the form.")
             }
     },
 
