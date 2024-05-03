@@ -1,5 +1,5 @@
 const Modal = {
-    open(){
+    open() {
         // Abrir modal
         // Adicionar class active ao modal
         document
@@ -7,7 +7,7 @@ const Modal = {
             .classList
             .add('active')
     },
-    close (){
+    close() {
         // Fechar modal
         // Remover class active do modal
         document
@@ -35,7 +35,6 @@ const Transaction = {
 
     add(transaction){
         Transaction.all.push(transaction)
-
         App.reload()
     },
     
@@ -50,11 +49,9 @@ const Transaction = {
 
             App.reload() // vai atualizar a aplicacao (onde aparecer)
         }
-        
-
     },
 
-    incomes(){
+    incomes() {
         let income = 0;
         // pegar todas as transacoes
     Transaction.all.forEach((transaction) => {
@@ -70,7 +67,7 @@ const Transaction = {
         return income;
     },
 
-    expenses(){
+    expenses() {
         let expense = 0;
         // pegar todas as transacoes
         Transaction.all.forEach((transaction) => {
@@ -80,13 +77,13 @@ const Transaction = {
             if(transaction.amount < 0) {
                 // adiciona a uma variavel e retornar o valor
                 expense += transaction.amount;
-                }
+            }
         })        
 
         return expense;
     },
 
-    total(){
+    total() {
         return Transaction.incomes() + Transaction.expenses();
         // vai ser + por que 'expenses' já vai ter um valor negativo
     }
@@ -98,30 +95,25 @@ const DOM = {
     transactionsContainer:document.querySelector('#data-table tbody'),
 // depois, colocou-se o index como argumento
 // trazendo funcionalidade para o botao de delete
-    addTransactions(transaction, index) {
-        
+    addTransactions(transaction, index) {        
         const tr = document.createElement('tr')
+
         tr.innerHTML = DOM.innerHTMLTransaction(transaction, index)
         tr.dataset.index = index
 
         DOM.transactionsContainer.appendChild(tr)
-        
     },
 
     innerHTMLTransaction(transaction, index) {
-        const CSSclass = transaction.amount > 0 ? "income":"expense" 
-
+        const CSSclass = transaction.amount > 0 ? "income":"expense"
         const amount = Utils.formatCurrancy(transaction.amount)
-
         const html = `
-        
             <td class="description">${transaction.description}</td>
             <td class="${CSSclass}">${amount}</td>
             <td class="date">${transaction.date}</td>
             <td>
                 <img onclick="Transaction.remove(${index})" src="./assets/minus.svg" alt="Remover transação">
             </td>
-        
         `
         return html
     },
@@ -141,7 +133,6 @@ const DOM = {
     clearTransactions() { // vai limpar a cada novo cadastro de transacoes
         DOM.transactionsContainer.innerHTML = ""
     }
-
 }
 
 
@@ -240,18 +231,11 @@ const Form = { // dar funcionalidade para o
         // fechar o modal
             Modal.close()
         // Atualizar a aplicacao
-        
-
         } catch (error) { // vai exibir um alerta de erro
             alert(error.message)
-
         }
-
-        
     }
 }
-
-
 
 Storage.get()
 
@@ -262,11 +246,8 @@ const App = {
         Transaction.all.forEach((transaction, index) => {
             DOM.addTransactions(transaction, index)
         })
-        
         DOM.updateBalance()
-
         Storage.set(Transaction.all)
-
     },
     reload(){ // 'reload' refazer a apliacao com
               // os valores cadastrados
@@ -275,6 +256,5 @@ const App = {
 
     },
 }
-
 
 App.init()
