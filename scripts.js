@@ -54,14 +54,14 @@ const Transaction = {
     incomes() {
         let income = 0;
         // pegar todas as transacoes
-    Transaction.all.forEach((transaction) => {
+        Transaction.all.forEach((transaction) => {
             // '=>' substitui a palava 'function'
 
             // se for maior que zero
             if(transaction.amount > 0) {
                 // somar a uma variavel e retornar o valor
                 income += transaction.amount;
-                }
+            }
         })        
 
         return income;
@@ -142,7 +142,7 @@ const Utils = {
     formatAmount(value) {
         value = Number(value) * 100 
         // vai deixar de ser string e virar number
-    return Math.round(value)
+        return Math.round(value)
     },
     // vai formatar a exibicao da data
     // e colocar dia -> mes - > ano
@@ -173,13 +173,11 @@ const Form = { // dar funcionalidade para o
     // ligando js com html de acordo com os dados da tabela
     // ver 'input group' no index.html
     getValues(){
-
         return {
             description: Form.description.value,
             amount: Form.amount.value,
             date: Form.date.value
         }
-
     },
 
     validateField(){
