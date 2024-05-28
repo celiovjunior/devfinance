@@ -32,21 +32,17 @@ const Storage = {
 
 const Transaction = {
     all: Storage.get(),
-
     add(transaction){
         Transaction.all.push(transaction)
         App.reload()
-    },
-    
+    },    
     remove(index){
         if (window.confirm ("Are you sure you want to delete that information?"))
         // vai perguntar pro usuario se deseja remover
         // ou nao aquela transacao
         
         {
-
             Transaction.all.splice(index, 1),
-
             App.reload() // vai atualizar a aplicacao (onde aparecer)
         }
     },
@@ -66,7 +62,6 @@ const Transaction = {
 
         return income;
     },
-
     expenses() {
         let expense = 0;
         // pegar todas as transacoes
@@ -82,10 +77,9 @@ const Transaction = {
 
         return expense;
     },
-
     total() {
-        return Transaction.incomes() + Transaction.expenses();
-        // vai ser + por que 'expenses' já vai ter um valor negativo
+        return Transaction.incomes() + Transaction.expenses(); 
+        
     }
 }
 
@@ -247,11 +241,11 @@ const App = {
         DOM.updateBalance()
         Storage.set(Transaction.all)
     },
-    reload(){ // 'reload' refazer a apliacao com
-              // os valores cadastrados
+    reload() {
+        // 'reload' refazer a apliacao com
+        // os valores cadastrados
         DOM.clearTransactions()
         App.init()
-
     },
 }
 
